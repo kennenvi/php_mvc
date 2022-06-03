@@ -65,4 +65,15 @@ class Produto {
             $this->data         = $linha['data'];
         }
     }
+
+    public function atualizar()
+    {
+        $sql = "update produto
+                    set nome        =   '{$this->nome}',
+                        descricao   =   '{$this->descricao}',
+                        status      =   '{$this->status}',
+                  where id = '{$this->id}'";
+        $conexao = Conexao::getConexao();
+        $conexao->exec($sql);
+    }
 }

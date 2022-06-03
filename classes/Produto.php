@@ -37,11 +37,21 @@ class Produto {
     {
         $sql = "insert into produto (nome, descricao, status)
             values ('{$this->nome}', '{$this->descricao}', '{$this->status}')";
-        $conexao = new PDO(
-                "mysql:host=127.0.0.1;dbname=ifpr_gabriel",
-                "root",
-                ""
-            );
+        $conexao = Conexao::carregar();
+
         $conexao->exec($sql);
+    }
+
+    public function carregar()
+    {
+        $sql = "select * from produto where id = {$this->id}";
+        $conexao = Conexao::carregar();
+        
+        $resultado = $conexao->query($sql);
+        $lista = $resultado.fetchAll();
+
+        foreach ($lista as $linha) {
+            return $linha; // Retorna só 1 registro
+        }
     }
 }

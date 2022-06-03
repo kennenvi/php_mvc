@@ -75,5 +75,17 @@ class Produto {
                   where id = '{$this->id}'";
         $conexao = Conexao::getConexao();
         $conexao->exec($sql);
+
+        header('location: produto-listar.php'); // Redirecionamento
+    }
+
+    public function excluir()
+    {
+        $sql = "deleto from produto
+                    where id = '{$this->id}'";
+        $conexao = Conexao::getConexao();
+        $conexao->exec($sql);
+
+        header('location: produto-listar.php'); // Redirecionamento
     }
 }

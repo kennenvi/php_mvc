@@ -7,12 +7,20 @@ class Produto {
     public $nome;  
     public $descricao;
     public $status;
+    public $id;
+    public $data;
 
-    public function __construct($nome, $descricao, $status)
+    public function __construct($id=null, $nome=null, $descricao=null, $status=null, $data=null)
     {
-        $this->nome = $nome;
-        $this->descricao = $descricao;
-        $this->status = $status;
+        if ($id) {
+            $this->id = $id;
+            $this->carregar();
+        }
+        else {
+            $this->nome = $nome;
+            $this->descricao = $descricao;
+            $this->status = $status;
+        }
     }
 
     public function __get($atributo)
@@ -37,7 +45,7 @@ class Produto {
     {
         $sql = "insert into produto (nome, descricao, status)
             values ('{$this->nome}', '{$this->descricao}', '{$this->status}')";
-        $conexao = Conexao::carregar();
+        $conexao = Conexao::getConexao();
 
         $conexao->exec($sql);
     }
@@ -45,13 +53,16 @@ class Produto {
     public function carregar()
     {
         $sql = "select * from produto where id = {$this->id}";
-        $conexao = Conexao::carregar();
+        $conexao = Conexao::getConexao();
         
         $resultado = $conexao->query($sql);
-        $lista = $resultado.fetchAll();
+        $lista = $resultado->fetchAll();
 
         foreach ($lista as $linha) {
-            return $linha; // Retorna só 1 registro
+            $this->nome         = $linha['nome'];
+            $this->descricao    = $linha['descricao'];
+            $this->status       = $linha['status'];
+            $this->data         = $linha['data'];
         }
     }
 }

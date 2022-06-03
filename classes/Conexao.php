@@ -1,10 +1,12 @@
 <?php
 
+require_once 'config.php';
+
 class Conexao
 {
     public static function getConexao()
     {
         return new PDO(
-            "mysql:host=127.0.0.1;dbname=ifpr_gabriel", "root", "");
+            DB_DRIVER . ":host=" . DB_HOST . ";dbname=" . DB_NOME, DB_USUARIO, DB_SENHA);
     }
 }

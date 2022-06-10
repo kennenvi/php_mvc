@@ -10,10 +10,11 @@
 
 <?php
 
-require_once 'classes/Produto.php';
+require_once 'autoload.php';
+
 
 $id = $_GET['id'];
 $produto = new Produto($id);
-$produto->excluir($id);
+$produto->excluir();
 
-header('location: produto-listar.php');
+header("location: produto-listar.php?msg={$msg}");

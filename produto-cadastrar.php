@@ -13,7 +13,7 @@
 
 <?php
 
-require_once 'classes/Produto.php';
+require_once 'autoload.php';
 
 if(isset($_POST['add_product'])) {
     $nome = $_POST['name_field'];

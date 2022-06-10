@@ -23,7 +23,9 @@
 
 <?php
 
-require_once 'classes/Produto.php';
+// require_once 'classes/Produto.php';
+require_once 'autoload.php';
+
 
 // ATUALIZAR REGISTRO
 if (isset($_POST['update_product'])) {

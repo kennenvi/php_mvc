@@ -13,15 +13,16 @@
 
 
 <?php
-require('classes/Produto.php');
-$produto = new Produto();
+require_once 'autoload.php';
+
+$produto = new Produto(null, null, null); 
 $lista = $produto->listar();
 
 if(isset($_POST['edit'])) {
     header("location: produto-alterar.php?id={$_POST['edit']}");
 }
 if(isset($_POST['delete'])) {
-    $produto->excluir($_POST['delete']);
+    header("location: produto-excluir.php?id={$_POST['delete']}");
 }
 ?>
 
@@ -42,7 +43,7 @@ if(isset($_POST['delete'])) {
 
 </head>
 
-<body>
+<body class="relative">
     <!-- LIST TABLE -->
     <div class="p-5">
         <h1 class="text-neutral-500 uppercase font-bold text-2xl text-center hover:underline animate-all animate-pulse">
@@ -84,10 +85,13 @@ if(isset($_POST['delete'])) {
                             </td>
                         </tr>
                     <?php endforeach ?>
-
                 </form>
             </tbody>
         </table>
+        <a href="produto-cadastrar.php">
+            <button type="button" class="btn btn-primary absolute bottom-0 right-5 text-blue-600">Primary</button>
+        </a>
+        <?php require_once 'message.php'; ?>
     </div>
 </body>
 

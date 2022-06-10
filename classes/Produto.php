@@ -81,7 +81,7 @@ class Produto {
 
     public function excluir()
     {
-        $sql = "deleto from produto
+        $sql = "delete from produto
                     where id = '{$this->id}'";
         $conexao = Conexao::getConexao();
         $conexao->exec($sql);

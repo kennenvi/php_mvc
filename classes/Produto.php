@@ -60,11 +60,14 @@ class Produto {
     }
 
     public function carregar()
-    {
-        $sql = "select * from produto where id = {$this->id}";
+    { # Fazendo
+        $sql = "select * from produto where id = :i";
         $conexao = Conexao::getConexao();
         
-        $resultado = $conexao->query($sql);
+        $ps = $conexao->prepare($sql);
+        $ps->bindValue(':i', $this->id);
+        
+        $resultado = $ps->execute();
         $lista = $resultado->fetchAll();
 
         foreach ($lista as $linha) {
@@ -76,24 +79,35 @@ class Produto {
     }
 
     public function atualizar()
-    {
+    { # A fazer
         $sql = "update produto
-                    set nome        =   '{$this->nome}',
-                        descricao   =   '{$this->descricao}',
-                        status      =   '{$this->status}'
-                  where id = '{$this->id}'";
+                    set nome        =   :n,
+                        descricao   =   :d,
+                        status      =   :s
+                  where id = :i";
         $conexao = Conexao::getConexao();
-        $conexao->exec($sql);
+
+        $ps = $conexao->prepare($sql);
+        $ps->bindValue(':n', $this->nome);
+        $ps->bindValue(':d', $this->descricao);
+        $ps->bindValue(':s', $this->status);
+        $ps->bindValue(':i', $this->id);
+
+        $resultado = $ps.execute();
 
         header('location: produto-listar.php'); // Redirecionamento
     }
 
     public function excluir()
-    {
+    { # A fazer
         $sql = "delete from produto
-                    where id = '{$this->id}'";
+                    where id = :i";
         $conexao = Conexao::getConexao();
-        $conexao->exec($sql);
+
+        $ps = $conexao->prepare($sql);
+        $ps->bindValue(':i', $this->id);
+
+        $resultado = $ps->execute();
 
         header('location: produto-listar.php'); // Redirecionamento
     }

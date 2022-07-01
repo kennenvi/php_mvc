@@ -11,12 +11,15 @@
 
 ?> -->
 
-
 <?php
 require_once 'autoload.php';
 
-$produto = new Produto(null, null, null); 
-$lista = $produto->listar();
+try {
+    $produto = new Produto();
+    $lista = $produto->listar();
+} catch (Exception $e) {
+    Erro::trataErro($e);
+}
 
 if(isset($_POST['edit'])) {
     header("location: produto-alterar.php?id={$_POST['edit']}");

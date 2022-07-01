@@ -41,13 +41,22 @@ class Produto {
         return $resultado->fetchAll();
     }
 
-    public function inserir()
-    {
-        $sql = "insert into produto (nome, descricao, status)
-            values ('{$this->nome}', '{$this->descricao}', '{$this->status}')";
+    public function inserir() {
+        $sql = "insert into produto (nome, descrica, status)
+            values (:n, :d, :s)";
+
         $conexao = Conexao::getConexao();
 
-        $conexao->exec($sql);
+        $ps = $conexao->prepare($sql);
+        $ps->bindValue(':n', $this->nome);
+        $ps->bindValue(':d', $this->descricao);
+        $ps->bindValue(':s', $this->status);
+
+        $resultado = $ps.execute();
+        if ($resultado == 0) {
+            throw new Exception("Erro ao inserir registro.");
+            return false;
+        }
     }
 
     public function carregar()

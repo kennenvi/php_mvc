@@ -21,17 +21,13 @@ if(isset($_POST['cliente_adicionar'])) {
     $telefone = $_POST['telefone'];
     $observacao = $_POST['observacao'];
 
-    // Opt 1
-    $produto = new Produto(null, $nome, $cpfcnpj, $telefone, $observacao); 
-
-    // Opt 2 -- OO w/o constructor
-    // $produto = new Produto();
-
-    // $produto->nome = $nome;
-    // $produto->descricao = $descricao;
-    // $produto->status = $status;
-
-    $produto->inserir();
+    try {
+        $produto = new Produto(null, $nome, $cpfcnpj, $telefone, $observacao);
+        
+        $produto->inserir();
+    } catch (Exception $e) {
+        Erro::trataErro($e);
+    }
 }
 
 ?>

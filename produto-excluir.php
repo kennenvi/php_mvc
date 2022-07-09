@@ -12,9 +12,13 @@
 
 require_once 'autoload.php';
 
+try {
+    $id = $_GET['id'];
+    $produto = new Produto($id);
+    $produto->excluir();
+} catch (Exception $e) {
+    Erro::trataErro($e);
+}
 
-$id = $_GET['id'];
-$produto = new Produto($id);
-$produto->excluir();
 
 header("location: produto-listar.php?msg={$msg}");

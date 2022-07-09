@@ -20,17 +20,14 @@ if(isset($_POST['produto_adicionar'])) {
     $observacao = $_POST['observacao'];
     $status = $_POST['status'];
 
-    // Opt 1
-    $produto = new Produto(null, $nome, $observacao, $status); 
+    try {
+        $produto = new Produto(null, $nome, $observacao, $status); 
 
-    // Opt 2 -- OO w/o constructor
-    // $produto = new Produto();
+        $produto->inserir();
+    } catch (Exception $e) {
+        Erro::trataErro($e);
+    }
 
-    // $produto->nome = $nome;
-    // $produto->descricao = $descricao;
-    // $produto->status = $status;
-
-    $produto->inserir();
 }
 
 ?>

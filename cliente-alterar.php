@@ -12,13 +12,18 @@ if (isset($_POST['cliente_atualizar'])) {
     $telefone = $_POST['telefone'];
     $observacao = $_POST['observacao'];
 
-    $cliente = new Cliente($id);
-    $cliente->nome = $nome;
-    $cliente->cpfcnpj = $cpfcnpj;
-    $cliente->telefone = $telefone;
-    $cliente->observacao = $observacao;
+    try {
+        $cliente = new Cliente($id);
+        $cliente->nome = $nome;
+        $cliente->cpfcnpj = $cpfcnpj;
+        $cliente->telefone = $telefone;
+        $cliente->observacao = $observacao;
 
-    $cliente->atualizar();
+        $cliente->atualizar();
+    } catch (Exception $e) {
+        Erro::trataErro($e);
+    }
+    
 }
 
 $id = $_GET['id'];

@@ -5,9 +5,14 @@ require_once 'autoload.php';
 if(isset($_POST['produtocategoria_adicionar'])) {
     $nome = $_POST['nome'];
 
-    $produto = new Produto(null, $nome); 
+    try {
+        $produto = new Produto(null, $nome); 
 
-    $produto->inserir();
+        $produto->inserir();
+    } catch (Exception $e) {
+        Erro::trataErro($e);
+    }
+
 }
 
 ?>

@@ -10,11 +10,15 @@ if (isset($_POST['usuario_atualizar'])) {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
 
-    $usuario = new Usuario($id);
-    $usuario->nome = $nome;
-    $usuario->email = $email;
-
-    $usuario->atualizar();
+    try {
+        $usuario = new Usuario($id);
+        $usuario->nome = $nome;
+        $usuario->email = $email;
+    
+        $usuario->atualizar();
+    } catch (Exception $e) {
+        Erro::trataErro($e);
+    }
 }
 
 $id = $_GET['id'];

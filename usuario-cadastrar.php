@@ -6,9 +6,14 @@ if(isset($_POST['usuario_adicionar'])) {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
 
-    $produto = new Produto(null, $nome, $email); 
+    try {
+        $produto = new Produto(null, $nome, $email); 
 
-    $produto->inserir();
+        $produto->inserir();
+    } catch (Exception $e) {
+        Erro::trataErro($e);
+    }
+
 }
 
 ?>

@@ -2,9 +2,12 @@
 
 require_once 'autoload.php';
 
-
-$id = $_GET['id'];
-$produtocategoria = new Categoria($id);
-$produtocategoria->excluir();
+try {
+    $id = $_GET['id'];
+    $produtocategoria = new ProdutoCategoria($id);
+    $produtocategoria->excluir();
+} catch (Exception $e) {
+    Erro::trataErro($e);
+}
 
 header("location: produtocategoria-listar.php?msg={$msg}");

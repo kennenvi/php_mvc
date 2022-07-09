@@ -9,10 +9,15 @@ if (isset($_POST['produtocategoria_atualizar'])) {
     $id = $_POST['produtocategoria_atualizar'];
     $nome = $_POST['nome'];
 
-    $categoria = new ProdutoCategoria($id);
-    $categoria->nome = $nome;
+    try {
+        $categoria = new ProdutoCategoria($id);
+        $categoria->nome = $nome;
+    
+        $categoria->atualizar();
+    } catch (Exception $e) {
+        Erro::trataErro($e);
+    }
 
-    $categoria->atualizar();
 }
 
 $id = $_GET['id'];

@@ -35,12 +35,17 @@ if (isset($_POST['produto_atualizar'])) {
     $observacao = $_POST['observacao'];
     $status = $_POST['status'];
 
-    $produto = new Produto($id);
-    $produto->nome = $nome;
-    $produto->observacao = $observacao;
-    $produto->status = $status;
+    try {
+        $produto = new Produto($id);
+        $produto->nome = $nome;
+        $produto->observacao = $observacao;
+        $produto->status = $status;
 
-    $produto->atualizar();
+        $produto->atualizar();
+    } catch (Exception $e) {
+        Erro::trataErro($e);
+    }
+    
 }
 
 $id = $_GET['id'];

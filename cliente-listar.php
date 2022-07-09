@@ -1,31 +1,18 @@
-<!-- <?php
-# Meu código
-// require_once('classes/Produto.php');
-
-// $produto = new Produto(null, null, null);
-// $lista = $produto->listar();
-
-// echo "<pre>";
-// print_r($lista);
-// echo "</pre>";
-
-?> -->
-
 <?php
 require_once 'autoload.php';
 
 try {
-    $produto = new Produto();
-    $lista = $produto->listar();
+    $cliente = new Cliente();
+    $lista = $cliente->listar();
 } catch (Exception $e) {
     Erro::trataErro($e);
 }
 
 if(isset($_POST['editar'])) {
-    header("location: produto-alterar.php?id={$_POST['editar']}");
+    header("location: cliente-alterar.php?id={$_POST['editar']}");
 }
 if(isset($_POST['deletar'])) {
-    header("location: produto-excluir.php?id={$_POST['deletar']}");
+    header("location: cliente-excluir.php?id={$_POST['deletar']}");
 }
 ?>
 
@@ -57,8 +44,8 @@ if(isset($_POST['deletar'])) {
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nome</th>
-                    <th scope="col">Descrição</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">Cpf/Cnpj</th>
+                    <th scope="col">Telefone</th>
                     <th scope="col">Opções</th>
                 </tr>
             </thead>
@@ -91,7 +78,7 @@ if(isset($_POST['deletar'])) {
                 </form>
             </tbody>
         </table>
-        <a href="produto-cadastrar.php">
+        <a href="cliente-cadastrar.php">
             <button type="button" class="btn btn-primary absolute bottom-0 right-5 text-blue-600">Cadastrar</button>
         </a>
         <?php require_once 'message.php'; ?>

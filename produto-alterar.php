@@ -71,7 +71,7 @@ $produto = new Produto($id);
     <!-- LIST TABLE -->
     <div class="p-5">
         <h1 class="text-neutral-500 uppercase font-bold text-2xl text-center hover:underline animate-all animate-pulse">
-           Atualizar Produto
+           Alterar Produto
         </h1>
         <div class="border-bottom border-zinc-800 border-dashed"></div>
         <form class="mt-2 relative" action="#" method="post">

@@ -11,7 +11,7 @@ class Cliente {
     public $observacao; # Lembrar de adicionar esse
     public $data;
 
-    public function __construct($id=null, $nome=null, $cpfcnpj=null, $telefone=null, $observacao, $data=null)
+    public function __construct($id=null, $nome=null, $cpfcnpj=null, $telefone=null, $observacao=null, $data=null)
     {
         if ($id) {
             $this->id = $id;

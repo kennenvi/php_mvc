@@ -15,10 +15,10 @@
 
 require_once 'autoload.php';
 
-if(isset($_POST['add_product'])) {
-    $nome = $_POST['name_field'];
-    $descricao = $_POST['comments_field'];
-    $status = $_POST['select_field'];
+if(isset($_POST['produto_adicionar'])) {
+    $nome = $_POST['nome'];
+    $descricao = $_POST['observacao'];
+    $status = $_POST['status'];
 
     // Opt 1
     $produto = new Produto(null, $nome, $descricao, $status); 
@@ -36,7 +36,7 @@ if(isset($_POST['add_product'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8" />
@@ -56,35 +56,35 @@ if(isset($_POST['add_product'])) {
     <!-- LIST TABLE -->
     <div class="p-5">
         <h1 class="text-neutral-500 uppercase font-bold text-2xl text-center hover:underline animate-all animate-pulse">
-            Register Product
+            Cadastrar Produto
         </h1>
         <div class="border-bottom border-zinc-800 border-dashed"></div>
         <form class="mt-2 relative" action="#" method="post">
             <div class="row">
                 <div class="col">
                     <div class="mb-3">
-                        <label for="name_field" class="form-label">Name</label>
-                        <input type="text" name="name_field" class="form-control" id="name_field">
+                        <label for="nome" class="form-label">Nome</label>
+                        <input type="text" name="nome" class="form-control" id="nome">
                     </div>
                 </div>
                 <div class="col">
                     <div class="mb-3">
                         <label class="form-label">Status</label>
-                        <select class="form-select" name="select_field">
-                            <option selected disabled>Open this select menu</option>
-                            <option value="0">Disabled</option>
-                            <option value="1">Enabled</option>
+                        <select class="form-select" name="status">
+                            <option selected disabled>Abra esse menu de seleção</option>
+                            <option value="0">Inativo</option>
+                            <option value="1">Ativo</option>
                         </select>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="form-floating">
-                    <textarea class="form-control" name="comments_field" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                    <label for="floatingTextarea">Comments</label>
+                    <textarea class="form-control" name="observacao" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                    <label for="floatingTextarea">Observação</label>
                 </div>
             </div>
-            <button type="submit" name="add_product" class="absolute right-2 mt-3 btn btn-primary text-blue-700">Submit</button>
+            <button type="submit" name="produto_adicionar" class="absolute right-2 mt-3 btn btn-primary text-blue-700">Salvar</button>
         </form>
     </div>
 </body>

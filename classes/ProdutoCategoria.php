@@ -45,7 +45,7 @@ class Categoria {
         $ps = $conexao->prepare($sql);
         $ps->bindValue(':n', $this->nome);
 
-        $resultado = $ps.execute();
+        $resultado = $ps->execute();
         if ($resultado == 0) {
             throw new Exception("Erro ao inserir registro.");
             return false;
@@ -76,7 +76,7 @@ class Categoria {
         $ps->bindValue(':n', $this->nome);
         $ps->bindValue(':i', $this->id);
 
-        $resultado = $ps.execute();
+        $resultado = $ps->execute();
 
         header('location: produtocategoria-listar.php'); // Redirecionamento
     }

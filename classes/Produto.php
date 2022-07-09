@@ -52,7 +52,7 @@ class Produto {
         $ps->bindValue(':d', $this->descricao);
         $ps->bindValue(':s', $this->status);
 
-        $resultado = $ps.execute();
+        $resultado = $ps->execute();
         if ($resultado == 0) {
             throw new Exception("Erro ao inserir registro.");
             return false;
@@ -90,7 +90,7 @@ class Produto {
         $ps->bindValue(':s', $this->status);
         $ps->bindValue(':i', $this->id);
 
-        $resultado = $ps.execute();
+        $resultado = $ps->execute();
 
         header('location: produto-listar.php'); // Redirecionamento
     }

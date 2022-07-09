@@ -55,7 +55,7 @@ class Cliente {
         $ps->bindValue(':t', $this->telefone);
         $ps->bindValue(':o', $this->observacao);
 
-        $resultado = $ps.execute();
+        $resultado = $ps->execute();
         if ($resultado == 0) {
             throw new Exception("Erro ao inserir registro.");
             return false;
@@ -96,7 +96,7 @@ class Cliente {
         $ps->bindValue(':o', $this->observacao);
         $ps->bindValue(':i', $this->id);
 
-        $resultado = $ps.execute();
+        $resultado = $ps->execute();
 
         header('location: cliente-listar.php'); // Redirecionamento
     }

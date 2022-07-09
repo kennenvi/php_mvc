@@ -51,7 +51,7 @@ class Usuario {
         $ps->bindValue(':e', $this->email);
         $ps->bindValue(':s', $this->senha);
 
-        $resultado = $ps.execute();
+        $resultado = $ps->execute();
         if ($resultado == 0) {
             throw new Exception("Erro ao inserir registro.");
             return false;
@@ -88,7 +88,7 @@ class Usuario {
         $ps->bindValue(':s', $this->senha);
         $ps->bindValue(':i', $this->id);
 
-        $resultado = $ps.execute();
+        $resultado = $ps->execute();
 
         header('location: usuario-listar.php'); // Redirecionamento
     }

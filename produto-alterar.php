@@ -28,12 +28,12 @@ require_once 'autoload.php';
 
 
 // ATUALIZAR REGISTRO
-if (isset($_POST['update_product'])) {
+if (isset($_POST['produto_atualizar'])) {
 
-    $id = $_POST['update_product'];
-    $nome = $_POST['name_field'];
-    $descricao = $_POST['comments_field'];
-    $status = $_POST['select_field'];
+    $id = $_POST['produto_atualizar'];
+    $nome = $_POST['nome'];
+    $descricao = $_POST['observacao'];
+    $status = $_POST['status'];
 
     $produto = new Produto($id);
     $produto->nome = $nome;
@@ -51,7 +51,7 @@ $produto = new Produto($id);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8" />
@@ -71,35 +71,35 @@ $produto = new Produto($id);
     <!-- LIST TABLE -->
     <div class="p-5">
         <h1 class="text-neutral-500 uppercase font-bold text-2xl text-center hover:underline animate-all animate-pulse">
-            Update Product
+           Atualizar Produto
         </h1>
         <div class="border-bottom border-zinc-800 border-dashed"></div>
         <form class="mt-2 relative" action="#" method="post">
             <div class="row">
                 <div class="col">
                     <div class="mb-3">
-                        <label for="name_field" class="form-label">Name</label>
-                        <input type="text" name="name_field" class="form-control" value="<?= $produto->nome; ?> " id="name_field">
+                        <label for="nome" class="form-label">Nome</label>
+                        <input type="text" name="nome" class="form-control" value="<?= $produto->nome; ?> " id="nome">
                     </div>
                 </div>
                 <div class="col">
                     <div class="mb-3">
                         <label class="form-label">Status</label>
-                        <select class="form-select" name="select_field">
-                            <option  <?=  (!isset($produto->status) ? 'selected' : '') ?> disabled>Open this select menu</option>
-                            <option <?=  (($produto->status == 0) ? 'selected' : '') ?> value="0">Disabled</option>
-                            <option <?= (($produto->status == 1) ? 'selected' : '') ?> value="1">Enabled</option>
+                        <select class="form-select" name="status">
+                            <option  <?=  (!isset($produto->status) ? 'selected' : '') ?> disabled>Abra esse menu de seleção</option>
+                            <option <?=  (($produto->status == 0) ? 'selected' : '') ?> value="0">Inativo</option>
+                            <option <?= (($produto->status == 1) ? 'selected' : '') ?> value="1">Ativo</option>
                         </select>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="">
-                    <label for="floatingTextarea" class='form-label'>Comments</label>
-                    <textarea class="form-control" name="comments_field" id="floatingTextarea"><?php echo $produto->descricao ?></textarea>
+                    <label for="floatingTextarea" class='form-label'>Observação</label>
+                    <textarea class="form-control" name="observacao" id="floatingTextarea"><?php echo $produto->descricao ?></textarea>
                 </div>
             </div>
-            <button type="submit" name="update_product" value="<?= $id ?>" class="absolute right-2 mt-3 btn btn-primary text-blue-700">Submit</button>
+            <button type="submit" name="produto_atualizar" value="<?= $id ?>" class="absolute right-2 mt-3 btn btn-primary text-blue-700">Salvar</button>
         </form>
     </div>
 </body>

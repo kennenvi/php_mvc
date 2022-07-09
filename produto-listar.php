@@ -30,7 +30,7 @@ if(isset($_POST['delete'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8" />
@@ -50,16 +50,16 @@ if(isset($_POST['delete'])) {
     <!-- LIST TABLE -->
     <div class="p-5">
         <h1 class="text-neutral-500 uppercase font-bold text-2xl text-center hover:underline animate-all animate-pulse">
-            All products
+            Produtos
         </h1>
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Desc</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Descrição</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Options</th>
+                    <th scope="col">Opções</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,11 +68,11 @@ if(isset($_POST['delete'])) {
                         foreach ($lista as $value) : 
                     ?>
                         <tr>
-                            <th scope="row" name="product_id" id="product_id"><?= $value[0] ?></th>
-                            <td name="product_name" id="product_name"><?= $value[1] ?></td>
-                            <td name="product_desc" id="product_desc"><?= $value[2] ?></td>
-                            <td name="product_status" id="product_status">
-                                <?= $value[3] ? 'active' : 'inactive' ?>
+                            <th scope="row" name="produto_id" id="produto_id"><?= $value[0] ?></th>
+                            <td name="produto_nome" id="produto_nome"><?= $value[1] ?></td>
+                            <td name="produto_descricao" id="produto_descricao"><?= $value[2] ?></td>
+                            <td name="produto_status" id="produto_status">
+                                <?= $value[3] ? 'Ativo' : 'Inativo' ?>
                             </td>
                             <td>
                                 <button type="submit" class="btn btn-info relative" name="edit" id="edit" value="<?=  $value[0] ?>">
@@ -92,7 +92,7 @@ if(isset($_POST['delete'])) {
             </tbody>
         </table>
         <a href="produto-cadastrar.php">
-            <button type="button" class="btn btn-primary absolute bottom-0 right-5 text-blue-600">Primary</button>
+            <button type="button" class="btn btn-primary absolute bottom-0 right-5 text-blue-600">Cadastrar</button>
         </a>
         <?php require_once 'message.php'; ?>
     </div>

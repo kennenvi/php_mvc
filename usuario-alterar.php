@@ -1,37 +1,24 @@
 <?php
 
-// require_once 'classes/Produto.php';
-
-// $nome = "Caneta explosiva". rand(194, 623);
-// $descricao = "Caneta que explode";
-// $status = 1;
-
-// $produto = new Produto($nome, $descricao, $status);
-// $produto->inserir();
-
-?>
-
-<?php
-
 require_once 'autoload.php';
 
-if(isset($_POST['produto_adicionar'])) {
+
+// ATUALIZAR REGISTRO
+if (isset($_POST['usuario_atualizar'])) {
+
+    $id = $_POST['usuario_atualizar'];
     $nome = $_POST['nome'];
-    $observacao = $_POST['observacao'];
-    $status = $_POST['status'];
+    $email = $_POST['email'];
 
-    // Opt 1
-    $produto = new Produto(null, $nome, $observacao, $status); 
+    $usuario = new Usuario($id);
+    $usuario->nome = $nome;
+    $usuario->email = $email;
 
-    // Opt 2 -- OO w/o constructor
-    // $produto = new Produto();
-
-    // $produto->nome = $nome;
-    // $produto->descricao = $descricao;
-    // $produto->status = $status;
-
-    $produto->inserir();
+    $usuario->atualizar();
 }
+
+$id = $_GET['id'];
+$usuario = new Usuario($id);
 
 ?>
 
@@ -56,7 +43,7 @@ if(isset($_POST['produto_adicionar'])) {
     <!-- LIST TABLE -->
     <div class="p-5">
         <h1 class="text-neutral-500 uppercase font-bold text-2xl text-center hover:underline animate-all animate-pulse">
-            Cadastrar Produto
+           Alterar Usuário
         </h1>
         <div class="border-bottom border-zinc-800 border-dashed"></div>
         <form class="mt-2 relative" action="#" method="post">
@@ -64,27 +51,17 @@ if(isset($_POST['produto_adicionar'])) {
                 <div class="col">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome</label>
-                        <input type="text" name="nome" class="form-control" id="nome">
+                        <input type="text" name="nome" class="form-control" value="<?= $usuario->nome; ?> " id="nome">
                     </div>
                 </div>
                 <div class="col">
                     <div class="mb-3">
-                        <label class="form-label">Status</label>
-                        <select class="form-select" name="status">
-                            <option selected disabled>Abra esse menu de seleção</option>
-                            <option value="0">Inativo</option>
-                            <option value="1">Ativo</option>
-                        </select>
+                        <label class="form-label" for="email">Email</label>
+                        <input type="text" name="email" class="form-control" value="<?= $usuario->email; ?> " id="email">                        
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="form-floating">
-                    <textarea class="form-control" name="observacao" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                    <label for="floatingTextarea">Observação</label>
-                </div>
-            </div>
-            <button type="submit" name="produto_adicionar" class="absolute right-2 mt-3 btn btn-primary text-blue-700">Salvar</button>
+            <button type="submit" name="usuario_atualizar" value="<?= $id ?>" class="absolute right-2 mt-3 btn btn-primary text-blue-700">Salvar</button>
         </form>
     </div>
 </body>

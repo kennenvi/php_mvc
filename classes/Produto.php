@@ -4,10 +4,10 @@ require_once 'Conexao.php';
 
 class Produto {
 
+    public $id;
     public $nome;  
     public $descricao;
     public $status;
-    public $id;
     public $data;
 
     public function __construct($id=null, $nome=null, $descricao=null, $status=null, $data=null)

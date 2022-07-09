@@ -32,12 +32,12 @@ if (isset($_POST['produto_atualizar'])) {
 
     $id = $_POST['produto_atualizar'];
     $nome = $_POST['nome'];
-    $descricao = $_POST['observacao'];
+    $observacao = $_POST['observacao'];
     $status = $_POST['status'];
 
     $produto = new Produto($id);
     $produto->nome = $nome;
-    $produto->descricao = $descricao;
+    $produto->observacao = $observacao;
     $produto->status = $status;
 
     $produto->atualizar();
@@ -96,7 +96,7 @@ $produto = new Produto($id);
             <div class="row">
                 <div class="">
                     <label for="floatingTextarea" class='form-label'>Observação</label>
-                    <textarea class="form-control" name="observacao" id="floatingTextarea"><?php echo $produto->descricao ?></textarea>
+                    <textarea class="form-control" name="observacao" id="floatingTextarea"><?php echo $produto->observacao ?></textarea>
                 </div>
             </div>
             <button type="submit" name="produto_atualizar" value="<?= $id ?>" class="absolute right-2 mt-3 btn btn-primary text-blue-700">Salvar</button>

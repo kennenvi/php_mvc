@@ -1,2 +1,2 @@
-Colocar "try catch" em todas as conexões com banco (fora das classes)
+Colocar "try catch" em todas as conexões com banco (fora das classes) ("ok")
 Mudar o novo jeito "bindValue" onde tem query para a forma antiga ("ok")

@@ -2,7 +2,7 @@
 
 require_once 'Conexao.php';
 
-class Categoria {
+class ProdutoCategoria {
 
     public $id;
     public $nome;

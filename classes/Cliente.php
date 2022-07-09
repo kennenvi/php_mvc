@@ -2,15 +2,16 @@
 
 require_once 'Conexao.php';
 
-class Produto {
-
-    public $nome;  
-    public $descricao;
-    public $status;
+class Cliente {
+    
     public $id;
+    public $nome;  
+    public $cpfcnpj;
+    public $telefone;
+    public $observacao; # Lembrar de adicionar esse
     public $data;
 
-    public function __construct($id=null, $nome=null, $descricao=null, $status=null, $data=null)
+    public function __construct($id=null, $nome=null, $cpfcnpj=null, $telefone=null, $observacao, $data=null)
     {
         if ($id) {
             $this->id = $id;
@@ -18,8 +19,9 @@ class Produto {
         }
         else {
             $this->nome = $nome;
-            $this->descricao = $descricao;
-            $this->status = $status;
+            $this->cpfcnpj = $cpfcnpj;
+            $this->telefone = $telefone;
+            $this->observacao = $observacao;
         }
     }
 
@@ -35,22 +37,23 @@ class Produto {
     
     public function listar()
     {
-        $sql = "select * from produto order by nome";
+        $sql = "select * from cliente order by nome";
         $conexao = Conexao::getConexao();
         $resultado = $conexao->query($sql);
         return $resultado->fetchAll();
     }
 
     public function inserir() {
-        $sql = "insert into produto (nome, descricao, status)
-            values (:n, :d, :s)";
+        $sql = "insert into cliente (nome, cpfcnpj, telefone, obsercacao)
+            values (:n, :c, :t, :o)";
 
         $conexao = Conexao::getConexao();
 
         $ps = $conexao->prepare($sql);
         $ps->bindValue(':n', $this->nome);
-        $ps->bindValue(':d', $this->descricao);
-        $ps->bindValue(':s', $this->status);
+        $ps->bindValue(':c', $this->cpfcnpj);
+        $ps->bindValue(':t', $this->telefone);
+        $ps->bindValue(':o', $this->observacao);
 
         $resultado = $ps.execute();
         if ($resultado == 0) {
@@ -61,43 +64,46 @@ class Produto {
 
     public function carregar()
     { # Fazendo
-        $sql = "select * from produto where id = {$this->id}";
+        $sql = "select * from cliente where id = {$this->id}";
         $conexao = Conexao::getConexao();
         
         $resultado = $conexao->query($sql);
         $lista = $resultado->fetchAll();
 
         foreach ($lista as $linha) {
-            $this->nome         = $linha['nome'];
-            $this->descricao    = $linha['descricao'];
-            $this->status       = $linha['status'];
-            $this->data         = $linha['data'];
+            $this->nome             = $linha['nome'];
+            $this->cpfcnpj          = $linha['cpfcnpj'];
+            $this->telefone         = $linha['telefone'];
+            $this->observacao       = $linha['observacao'];
+            $this->data             = $linha['data'];
         }
     }
 
     public function atualizar()
     { # A fazer
-        $sql = "update produto
-                    set nome        =   :n,
-                        descricao   =   :d,
-                        status      =   :s
+        $sql = "update cliente
+                    set nome        = :n,
+                        cpfcnpj     = :c,
+                        telefone    = :t,
+                        observacao  = :o
                   where id = :i";
         $conexao = Conexao::getConexao();
 
         $ps = $conexao->prepare($sql);
         $ps->bindValue(':n', $this->nome);
-        $ps->bindValue(':d', $this->descricao);
-        $ps->bindValue(':s', $this->status);
+        $ps->bindValue(':c', $this->cpfcnpj);
+        $ps->bindValue(':t', $this->telefone);
+        $ps->bindValue(':o', $this->observacao);
         $ps->bindValue(':i', $this->id);
 
         $resultado = $ps.execute();
 
-        header('location: produto-listar.php'); // Redirecionamento
+        header('location: cliente-listar.php'); // Redirecionamento
     }
 
     public function excluir()
     { # A fazer
-        $sql = "delete from produto
+        $sql = "delete from cliente
                     where id = :i";
         $conexao = Conexao::getConexao();
 
@@ -106,6 +112,6 @@ class Produto {
 
         $resultado = $ps->execute();
 
-        header('location: produto-listar.php'); // Redirecionamento
+        header('location: cliente-listar.php'); // Redirecionamento
     }
 }

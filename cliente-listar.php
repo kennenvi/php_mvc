@@ -64,13 +64,9 @@ if(isset($_POST['deletar'])) {
                             <td>
                                 <button type="submit" class="btn btn-info relative" name="editar" id="editar" value="<?=  $value[0] ?>">
                                     <i class="fa-solid fa-pen"></i>
-                                    <span class="animate-ping absolute h-3 w-3 rounded-full bg-info opacity-55 -right-1 -top-1"></span>
-                                    <span class="absolute -right-1 -top-1 rounded-full h-3 w-3 bg-info"></span>
                                 </button>
                                 <button type="submit" class="btn btn-warning relative" name="deletar" id="deletar" value="<?=  $value[0] ?>">
                                     <i class="fa-solid fa-trash"></i>
-                                    <span class="animate-ping absolute h-3 w-3 rounded-full bg-warning opacity-55 -right-1 -top-1"></span>
-                                    <span class="absolute -right-1 -top-1 rounded-full h-3 w-3 bg-warning"></span>
                                 </button>
                             </td>
                         </tr>

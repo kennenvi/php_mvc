@@ -5,11 +5,12 @@ require_once 'autoload.php';
 if(isset($_POST['usuario_adicionar'])) {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
+    $senha = $_POST['senha'];
 
     try {
-        $produto = new Produto(null, $nome, $email); 
+        $usuario = new Usuario(null, $nome, $email, $senha);
 
-        $produto->inserir();
+        $usuario->inserir();
     } catch (Exception $e) {
         Erro::trataErro($e);
     }
@@ -44,16 +45,22 @@ if(isset($_POST['usuario_adicionar'])) {
         <div class="border-bottom border-zinc-800 border-dashed"></div>
         <form class="mt-2 relative" action="#" method="post">
             <div class="row">
-                <div class="col">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome</label>
                         <input type="text" name="nome" class="form-control" id="nome">
                     </div>
-                </div>
+            </div>
+            <div class="row">
                 <div class="col">
                     <div class="mb-3">
                         <label class="form-label">Email</label>
                         <input type="text" name="email" class="form-control" id="email">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label class="form-label">Senha</label>
+                        <input type="password" name="senha" class="form-control" id="senha">
                     </div>
                 </div>
             </div>

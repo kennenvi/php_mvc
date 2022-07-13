@@ -51,8 +51,7 @@ if (isset($_POST['produto_atualizar'])) {
 $id = $_GET['id'];
 $produto = new Produto($id);
 
-// LIST PRODUCT'S DATA
-// DELETE PRODUCT FUNCTION (PRODUTO-EXCLUIR.PHP)
+
 ?>
 
 <!DOCTYPE html>

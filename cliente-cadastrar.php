@@ -1,13 +1,13 @@
 <?php
 
-// require_once 'classes/Produto.php';
+// require_once 'classes/cliente.php';
 
 // $nome = "Caneta explosiva". rand(194, 623);
 // $descricao = "Caneta que explode";
 // $status = 1;
 
-// $produto = new Produto($nome, $descricao, $status);
-// $produto->inserir();
+// $cliente = new cliente($nome, $descricao, $status);
+// $cliente->inserir();
 
 ?>
 
@@ -22,9 +22,9 @@ if(isset($_POST['cliente_adicionar'])) {
     $observacao = $_POST['observacao'];
 
     try {
-        $produto = new Produto(null, $nome, $cpfcnpj, $telefone, $observacao);
+        $cliente = new Cliente(null, $nome, $cpfcnpj, $telefone, $observacao);
         
-        $produto->inserir();
+        $cliente->inserir();
     } catch (Exception $e) {
         Erro::trataErro($e);
     }

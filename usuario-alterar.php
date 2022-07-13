@@ -9,11 +9,10 @@ if (isset($_POST['usuario_atualizar'])) {
     $id = $_POST['usuario_atualizar'];
     $nome = $_POST['nome'];
     $email = $_POST['email'];
+    $senha = $_POST['senha'];
 
     try {
-        $usuario = new Usuario($id);
-        $usuario->nome = $nome;
-        $usuario->email = $email;
+        $usuario = new Usuario($id, $nome, $email, $senha);
     
         $usuario->atualizar();
     } catch (Exception $e) {
@@ -52,16 +51,22 @@ $usuario = new Usuario($id);
         <div class="border-bottom border-zinc-800 border-dashed"></div>
         <form class="mt-2 relative" action="#" method="post">
             <div class="row">
-                <div class="col">
-                    <div class="mb-3">
-                        <label for="nome" class="form-label">Nome</label>
-                        <input type="text" name="nome" class="form-control" value="<?= $usuario->nome; ?> " id="nome">
-                    </div>
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Nome</label>
+                    <input type="text" name="nome" class="form-control" value="<?= $usuario->nome; ?> " id="nome">
                 </div>
+            </div>
+            <div class="row">
                 <div class="col">
                     <div class="mb-3">
                         <label class="form-label" for="email">Email</label>
                         <input type="text" name="email" class="form-control" value="<?= $usuario->email; ?> " id="email">                        
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="senha" class="form-label">Senha</label>
+                        <input type="password" name="senha" class="form-control" value="<?= $usuario->senha; ?> " id="senha">
                     </div>
                 </div>
             </div>

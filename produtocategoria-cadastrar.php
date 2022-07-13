@@ -6,9 +6,9 @@ if(isset($_POST['produtocategoria_adicionar'])) {
     $nome = $_POST['nome'];
 
     try {
-        $produto = new Produto(null, $nome); 
+        $produtoCategoria = new ProdutoCategoria(null, $nome); 
 
-        $produto->inserir();
+        $produtoCategoria->inserir();
     } catch (Exception $e) {
         Erro::trataErro($e);
     }

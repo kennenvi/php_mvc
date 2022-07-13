@@ -29,8 +29,7 @@ if (isset($_POST['cliente_atualizar'])) {
 $id = $_GET['id'];
 $cliente = new Cliente($id);
 
-// LIST PRODUCT'S DATA
-// DELETE PRODUCT FUNCTION (PRODUTO-EXCLUIR.PHP)
+
 ?>
 
 <!DOCTYPE html>
@@ -81,42 +80,12 @@ $cliente = new Cliente($id);
             <div class="row">
                 <div class="">
                     <label for="floatingTextarea" class='form-label'>Observação</label>
-                    <textarea class="form-control" name="observacao" id="floatingTextarea"><?php echo $cliente->descricao ?></textarea>
+                    <textarea class="form-control" name="observacao" id="floatingTextarea"><?= $cliente->descricao ?></textarea>
                 </div>
             </div>
             <button type="submit" name="cliente_atualizar" value="<?= $id ?>" class="absolute right-2 mt-3 btn btn-primary text-blue-700">Salvar</button>
         </form>
     </div>
 </body>
-
-<!-- 
-    <div class="row">
-                <div class="mb-3">
-                    <label for="nome" class="form-label">Nome</label>
-                    <input type="text" name="nome" class="form-control" id="nome">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="mb-3">
-                        <label for="cpfcnpj" class="form-label">Cpf/Cnpj</label>
-                        <input type="text" name="cpfcnpj" class="form-control" id="cpfcnpj">
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mb-3">
-                        <label for="telefone" class="form-label">Telefone</label>
-                        <input type="text" name="telefone" class="form-control" id="telefone">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-floating">
-                    <textarea class="form-control" name="observacao" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                    <label for="floatingTextarea">Observação</label>
-                </div>
-            </div>
-            <button type="submit" name="cliente_adicionar" class="absolute right-2 mt-3 btn btn-primary text-blue-700">Salvar</button>
- -->
 
 </html>

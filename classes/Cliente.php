@@ -44,7 +44,7 @@ class Cliente {
     }
 
     public function inserir() {
-        $sql = "insert into cliente (nome, cpfcnpj, telefone, obsercacao)
+        $sql = "insert into cliente (nome, cpfcnpj, telefone, observacao)
             values (:n, :c, :t, :o)";
 
         $conexao = Conexao::getConexao();
@@ -75,7 +75,7 @@ class Cliente {
             $this->cpfcnpj          = $linha['cpfcnpj'];
             $this->telefone         = $linha['telefone'];
             $this->observacao       = $linha['observacao'];
-            $this->data             = $linha['data'];
+            // $this->data             = $linha['data'];
         }
     }
 
